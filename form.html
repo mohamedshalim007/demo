@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Form</title>
+    <style>
+        body {
+            background-image: url('https://wallpaperbat.com/img/26357-pink-mountains-wallpaper-top-free-pink-mountains-background.jpg');
+            background-position: center;
+            background-size: cover;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            background-color:background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .box2 {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background-color: white;
+            border-right: 1px solid #ccc;
+        }
+
+        .box2 .image {
+            width: 100%;
+            height: 530px;
+
+            border-radius: 10px 0 0 10px;
+        }
+
+        .form_container {
+            flex: 1;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .form_container h1 {
+            text-align: center;
+            color: #fd4f95;
+        }
+
+        .form_container label,
+        .form_container input,
+        .form_container button,
+        .form_container p {
+            color: #fd4f95;
+            display: block;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .form_container input::placeholder {
+            color: #ccc;
+        }
+
+        .form_container input {
+            background: none;
+            padding: 10px;
+            box-sizing: border-box;
+            border: none;
+            border-bottom: 2px solid #fd4f95;
+            border-radius: 2px;
+        }
+
+        .form_container button {
+            padding: 10px;
+            background-color: #fd4f95;
+            border-radius: 11px;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        .form_container button:hover {
+            background-color: #45a049;
+        }
+
+        .form_container p {
+            color: red;
+            text-align: center;
+        }
+
+        .no {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+ 
+
+            .box2 .image {
+                width: 100%;
+                height: auto;
+                border-radius: 10px 10px 0 0;
+            }
+
+            .form_container {
+                border-radius: 0 0 10px 10px;
+            }
+            .form_container{
+                width: 99%;
+                padding: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+            } 
+        }
+    @media (min-width: 992px)  
+        {
+            .container{
+                width: 50%;
+                padding: 10px;
+                margin-left: 5px;
+                margin-right: 5px;
+            } 
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        
+        <div class="form_container">
+            <div class="input_form">
+                <h1>A1 accademy login page</h1>
+                <label for="name">Name</label>
+                <input id="name" type="text" name="name" placeholder="Enter your name" list="nam" value="shalim" required>
+                <datalist id="nam">
+                    <option>shalim</option>
+                </datalist>
+                <label for="phone">Phone Number</label>
+                <input id="phone" type="number" name="phone" placeholder="Enter your Phone Number" list="n" required value="7373318217">
+                <datalist id="n">
+                    <option >7373318217</option>
+                </datalist>
+                <label for="aadhaar">PassWord</label>
+                <input id="aadhaar" type="number" name="aadhaar" placeholder="Enter your Aadhaar Number" list="addar"
+                  value="91723"  required>
+                <datalist id="addar">
+                    <option  >91723</option>
+                </datalist>
+                <button onclick="getOtp()">Get OTP</button>
+
+                <label for="otp">OTP</label>
+                <input id="otp" type="number" name="otp" placeholder="Enter your OTP"  value="generatedOtp" required>
+
+                <button onclick="otpValue()">Let Go</button>
+                <p><input type="checkbox" required> I agree with the Terms and Conditions</p>
+                <p id="errors"></p>
+            </div>
+        </div>
+    </div>
+ 
+    <script>
+        var generatedOtp;
+
+        function getOtp() {
+            var name = document.getElementById("name").value;
+            var phone = document.getElementById("phone").value;
+            var aadhaar = document.getElementById("aadhaar").value;
+            var errors = document.getElementById("errors");
+
+<<<<<<< HEAD
+            if (name === "shalim" || phone === "7373318217" || aadhaar === "91723") {
+=======
+            if (name === "shalim" && phone === "7373318217" && aadhaar === "91723") {
+>>>>>>> f5aa70509c2fd3046e1cdd4f9f7a69f80682d2c0
+                generatedOtp = Math.floor(1000 + Math.random() * 9000); // Generate a 4-digit OTP
+                alert("Your OTP is: " + generatedOtp);
+                document.getElementById("otp").value = generatedOtp;
+
+                errors.textContent = "";
+            } else {
+                errors.textContent = "Entered wrong value";
+            }
+        }
+
+        function otpValue() {
+            var otp = document.getElementById("otp").value;
+            var image = document.querySelector(".image");
+            var errors = document.getElementById("errors");
+            var no = document.querySelector(".no");
+
+            if (otp == generatedOtp) {
+              window.location.href="A1.html"
+            } else {
+                errors.textContent = "Invalid OTP";
+            }
+
+            // Clear the input fields
+            document.getElementById("name").value = "";
+            document.getElementById("phone").value = "";
+            document.getElementById("aadhaar").value = "";
+            document.getElementById("otp").value = "";
+        }
+    </script>
+</body>
+
+</html>
